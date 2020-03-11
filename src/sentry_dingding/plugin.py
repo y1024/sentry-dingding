@@ -4,7 +4,6 @@ import json
 
 import requests
 from sentry.plugins.bases.notify import NotificationPlugin
-
 import sentry_dingding
 from .forms import DingDingOptionsForm
 
@@ -15,7 +14,7 @@ class DingDingPlugin(NotificationPlugin):
     """
     Sentry plugin to send error counts to DingDing.
     """
-    author = 'ansheng'
+    author = 'y1024'
     author_url = 'https://github.com/y1024/sentry-dingding'
     version = sentry_dingding.VERSION
     description = 'Send error counts to DingDing.'
@@ -58,9 +57,10 @@ class DingDingPlugin(NotificationPlugin):
             "msgtype": "markdown",
             "markdown": {
                 "title": title,
-                "text": u"#### {title} \n > {message} [href]({url})".format(
+                "text": u"#### {title} \n > {message} \n\n [查看详情]({url})".format(
                     title=title,
-                    message=json.dumps(event),
+                    # https://github.com/getsentry/sentry/pull/15759/commits/cfc474be32ba64dcd87994bd42584f007443ad6a
+                    message=event.title,
                     url=u"{}events/{}/".format(group.get_absolute_url(), event.event_id),
                 )
             }

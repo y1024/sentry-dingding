@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="sentry-dingding2",
-    version='0.0.4',
+    name="sentry10-dingding",
+    version='0.0.2',
     author='Sentrydingding2',
     author_email='1255322700@qq.com',
     url='https://github.com/y1024/sentry-dingding',
